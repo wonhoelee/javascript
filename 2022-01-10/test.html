@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>코로나 예방접종 지역</title>
+</head>
+<body>
+  <p id="ptag"></p>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script>
+    $.ajax({
+      method: "GET",
+      url: "https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=10&serviceKey=tLH2RhRcyUunwRujO2uMOc6%2FIRSQFggsMYvY7bglqzPY2QpIv109itLnYDMXjdSCDvufmEc6P4sbstCzPfzBDw%3D%3D",
+      data: { Authorization: "tLH2RhRcyUunwRujO2uMOc6%2FIRSQFggsMYvY7bglqzPY2QpIv109itLnYDMXjdSCDvufmEc6P4sbstCzPfzBDw%3D%3D" }
+    })
+    .done(function( msg ) {
+      console.log(msg)
+      // data = JSON.stringify(msg)
+      for (var i = 0; i < msg.data.length; i++) {
+        // console.log(msg.data.length)
+        // console.log(msg.data[i].address)
+        {
+          $("#ptag").append(msg.data[i].address + "<br>")
+          $("#ptag").append(msg.data[i].facilityName + "<br>")
+          $("#ptag").append(msg.data[i].phoneNumber + "<br>")
+          $("#ptag").append(msg.data[i].sido + "<br>")
+          $("#ptag").append(msg.data[i].sigungu + "<br>")
+          $("#ptag").append(msg.data[i].zipCode + "<br><br><br><br>")
+        }
+        //  $("p").append()
+      }
+      // console.log(data)
+  });
+  </script>
+  <p></p>
+</body>
+</html>
